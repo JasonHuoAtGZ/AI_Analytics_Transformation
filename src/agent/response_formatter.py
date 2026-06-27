@@ -27,12 +27,13 @@ class ResponseFormatter:
         row_count = len(result)
         chart_type = self.recommend_chart(result)
         chart_data = self._prepare_chart_data(result, chart_type)
+        display_table = self._format_table(result)
 
         summary = self._build_summary(question, result, row_count)
 
         return {
             "summary": summary,
-            "table": result,
+            "table": display_table,
             "sql": sql,
             "chart_type": chart_type,
             "chart_data": chart_data,
@@ -141,6 +142,47 @@ class ResponseFormatter:
         df = df.set_index(index_col)
         # Keep only numeric columns for chart
         df = df[numeric_cols]
+        return df
+
+    # ------------------------------------------------------------------
+    # Table formatting
+    # ------------------------------------------------------------------
+
+    @classmethod
+    def _format_table(cls, result: pd.DataFrame) -> pd.DataFrame:
+        """Format DataFrame columns for display in the UI.
+
+        - Numeric columns with pct/rate/share in name -> "12.3%"
+        - Integer columns -> "1,234,567"
+        - Float columns -> appropriate precision with commas
+        - Categorical columns -> untouched
+        """
+        df = result.copy()
+
+        for col in df.columns:
+            if df[col].dtype not in ("int64", "float64", "Int64", "Float64"):
+                continue
+
+            # Percentage/rate columns
+            if any(s in col.lower() for s in ("pct", "rate", "share")):
+                df[col] = df[col].apply(
+                    lambda x: f"{x * 100:.1f}%" if pd.notna(x) else "-"
+                )
+            # Integer columns (customer_count)
+            elif df[col].dtype in ("int64", "Int64"):
+                df[col] = df[col].apply(
+                    lambda x: f"{x:,}" if pd.notna(x) else "-"
+                )
+            # Float columns (premium, avg, etc.)
+            else:
+                df[col] = df[col].apply(
+                    lambda x: (
+                        f"{x:,.0f}" if abs(x) >= 1000 and pd.notna(x)
+                        else f"{x:,.2f}" if pd.notna(x)
+                        else "-"
+                    )
+                )
+
         return df
 
     # ------------------------------------------------------------------

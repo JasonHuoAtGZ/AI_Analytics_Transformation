@@ -5,6 +5,7 @@ Launch with: streamlit run src/ui/app.py
 
 import streamlit as st
 import pandas as pd
+import altair as alt
 
 from src.agent.query_engine import query_engine
 from src.agent.sql_executor import executor, SQLValidationError
@@ -18,12 +19,89 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("📊 Customer Analytics Query Agent")
-st.caption("Ask questions about life insurance customer data in plain English.")
+st.title("📊 Customer Analytics - APE & Cust Growth Agent")
+st.caption("Ask questions about APE and customer growth insights data in plain English.")
 
 # -- Session state ----------------------------------------------------------
 if "history" not in st.session_state:
     st.session_state.history = []
+
+
+# -- Chart builders ---------------------------------------------------------
+
+def build_bar_chart(data: pd.DataFrame) -> alt.Chart:
+    """Build an Altair bar chart with value labels on each bar."""
+    # Reset index to make the categorical column available
+    df = data.reset_index()
+    cat_col = df.columns[0]
+    val_col = df.columns[1]
+
+    # Determine if this is a percentage column
+    is_pct = any(s in val_col.lower() for s in ("pct", "rate", "share"))
+
+    bars = (
+        alt.Chart(df)
+        .mark_bar(color="#1f77b4", cornerRadiusTopLeft=3, cornerRadiusTopRight=3)
+        .encode(
+            x=alt.X(f"{cat_col}:N", title=None, sort=None),
+            y=alt.Y(f"{val_col}:Q", title=None),
+            tooltip=[f"{cat_col}:N", alt.Tooltip(f"{val_col}:Q", format=",.0f")],
+        )
+    )
+
+    # Value labels on bars
+    if is_pct:
+        labels = (
+            alt.Chart(df)
+            .mark_text(dy=-10, fontSize=11, fontWeight="bold", color="#333")
+            .encode(
+                x=alt.X(f"{cat_col}:N", sort=None),
+                y=alt.Y(f"{val_col}:Q"),
+                text=alt.Text(f"{val_col}:Q", format=".1%"),
+            )
+        )
+    else:
+        labels = (
+            alt.Chart(df)
+            .mark_text(dy=-10, fontSize=11, fontWeight="bold", color="#333")
+            .encode(
+                x=alt.X(f"{cat_col}:N", sort=None),
+                y=alt.Y(f"{val_col}:Q"),
+                text=alt.Text(f"{val_col}:Q", format=",.0f"),
+            )
+        )
+
+    return (bars + labels).properties(height=350)
+
+
+def build_line_chart(data: pd.DataFrame) -> alt.Chart:
+    """Build an Altair line chart with value labels on data points."""
+    df = data.reset_index()
+    cat_col = df.columns[0]
+    val_col = df.columns[1]
+
+    line = (
+        alt.Chart(df)
+        .mark_line(color="#1f77b4", point={"filled": True, "size": 60})
+        .encode(
+            x=alt.X(f"{cat_col}:N", title=None, sort=None),
+            y=alt.Y(f"{val_col}:Q", title=None),
+            tooltip=[f"{cat_col}:N", alt.Tooltip(f"{val_col}:Q", format=",.0f")],
+        )
+    )
+
+    labels = (
+        alt.Chart(df)
+        .mark_text(dy=-15, fontSize=11, fontWeight="bold", color="#333")
+        .encode(
+            x=alt.X(f"{cat_col}:N", sort=None),
+            y=alt.Y(f"{val_col}:Q"),
+            text=alt.Text(f"{val_col}:Q", format=",.0f"),
+        )
+    )
+
+    return (line + labels).properties(height=350)
+
 
 # -- Input ------------------------------------------------------------------
 with st.container():
@@ -76,9 +154,11 @@ if st.session_state.history:
     if chart_type != "none" and chart_data is not None and not chart_data.empty:
         st.subheader("📈 Visual")
         if chart_type == "bar":
-            st.bar_chart(chart_data, use_container_width=True)
+            chart = build_bar_chart(chart_data)
+            st.altair_chart(chart, use_container_width=True)
         elif chart_type == "line":
-            st.line_chart(chart_data, use_container_width=True)
+            chart = build_line_chart(chart_data)
+            st.altair_chart(chart, use_container_width=True)
 
     # -- Data table --
     st.subheader("📋 Data")
@@ -123,7 +203,7 @@ with st.sidebar:
 
     **How it works**:
     1. You ask a question in plain English
-    2. The LLM converts it to SQL with analytical reasoning
+    2. The LLM converts it to SQL
     3. The SQL runs against DuckDB
     4. Results are summarized with business insights and charts
     """)

@@ -509,6 +509,15 @@ FEW_SHOT_EXAMPLES: list[dict] = [
         "chart_type": "bar",
         "notes": "Single-row multi-metric output -- 5 calculated rates for one market, ideal for a horizontal bar chart comparison"
     },
+    # -- Pattern: APE proportion / share of total --
+    {
+        "question": "Which wealth segment shows the biggest APE proportion in PHKL?",
+        "sql": "SELECT wealth_segment, SUM(annual_premium) AS ape, SUM(annual_premium) * 1.0 / MAX(total_annual_premium) AS ape_pct FROM wealth_segment_pivot, (SELECT SUM(annual_premium) AS total_annual_premium FROM wealth_segment_pivot WHERE market = 'PHKL') WHERE market = 'PHKL' GROUP BY wealth_segment ORDER BY ape DESC",
+        "reasoning": "APE proportion = each segment's APE divided by the total PHKL APE. Use a subquery in the FROM clause to compute the denominator once, then cross join so every row has access to the total. The subquery is filtered to PHKL, and the outer query groups by wealth_segment.",
+        "chart_type": "bar",
+        "notes": "Two-step pattern: (1) compute total APE for the market in a subquery, (2) divide each segment's SUM by that total. Apply synonym: APE = annual_premium. The subquery must have the same WHERE filter as the outer query.",
+    },
+
 ]
 
 # =============================================================================
@@ -581,7 +590,8 @@ ORDER BY total_customers DESC
 6. "Compare" questions: include both entities, add difference/ratio where insightful.
 7. Always ORDER BY the most relevant metric DESC unless specified otherwise.
 8. "Top N" questions: ORDER BY ... DESC LIMIT N.
-9. Include BOTH customer_count and annual_premium in SELECT when grouping by any dimension.
+9. PROPORTION OF TOTAL: when the question asks for a segment's share or proportion of a total (e.g., "APE proportion", "premium share", "% of total in PHKL"), you MUST use a subquery to compute the denominator. Pattern: SELECT category, SUM(metric) AS value, SUM(metric) * 1.0 / MAX(total_metric) AS pct FROM table, (SELECT SUM(metric) AS total_metric FROM table WHERE filter) WHERE filter GROUP BY category. Wrap the subquery column in MAX() because DuckDB requires all non-GROUP-BY columns to be aggregated. The subquery must have the same WHERE filter. Do NOT divide by customer_count unless the question explicitly asks for "per customer" or "average".
+10. Include BOTH customer_count and annual_premium in SELECT when grouping by any dimension.
 
 ## FEW-SHOT EXAMPLES
 
