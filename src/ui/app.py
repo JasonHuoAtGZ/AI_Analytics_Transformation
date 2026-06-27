@@ -1,0 +1,119 @@
+﻿"""Streamlit UI for the Customer Analytics Query Agent.
+
+Launch with: streamlit run src/ui/app.py
+"""
+
+import streamlit as st
+
+from src.agent.query_engine import query_engine
+from src.agent.sql_executor import executor, SQLValidationError
+from src.agent.response_formatter import formatter
+
+# ── Page config ─────────────────────────────────────────────────────────
+st.set_page_config(
+    page_title="Customer Analytics Agent",
+    page_icon="📊",
+    layout="wide",
+)
+
+st.title("📊 Customer Analytics Query Agent")
+st.caption("Ask questions about life insurance customer data in plain English.")
+
+# ── Session state ───────────────────────────────────────────────────────
+if "history" not in st.session_state:
+    st.session_state.history = []
+
+# ── Input ───────────────────────────────────────────────────────────────
+with st.container():
+    col1, col2 = st.columns([5, 1])
+    with col1:
+        question = st.text_input(
+            "Your question",
+            placeholder='e.g. "How many HNW customers does each LBU have?"',
+            label_visibility="collapsed",
+        )
+    with col2:
+        submit = st.button("Ask", type="primary", use_container_width=True)
+
+# ── Process question ────────────────────────────────────────────────────
+if submit and question.strip():
+    with st.spinner("Generating SQL and querying data..."):
+        try:
+            sql = query_engine.generate_sql(question)
+        except Exception as e:
+            st.error(f"LLM error: {e}")
+            st.stop()
+
+        try:
+            result = executor.execute(sql)
+        except SQLValidationError as e:
+            st.error(f"SQL error: {e}")
+            with st.expander("Generated SQL (failed)", expanded=True):
+                st.code(sql, language="sql")
+            st.stop()
+
+        response = formatter.format(question, sql, result)
+
+        # Save to history
+        st.session_state.history.append(response)
+
+# ── Results ─────────────────────────────────────────────────────────────
+if st.session_state.history:
+    latest = st.session_state.history[-1]
+
+    st.divider()
+
+    # Summary
+    st.markdown(f"**{latest['summary']}**")
+
+    # Data table
+    st.dataframe(
+        latest["table"],
+        use_container_width=True,
+        hide_index=True,
+    )
+
+    # SQL transparency
+    with st.expander("🔍 View generated SQL", expanded=False):
+        st.code(latest["sql"], language="sql")
+
+# ── Question history ────────────────────────────────────────────────────
+if len(st.session_state.history) > 1:
+    with st.expander(f"📋 Question history ({len(st.session_state.history)} queries)", expanded=False):
+        for i, h in enumerate(reversed(st.session_state.history[:-1]), 1):
+            st.markdown(f"**Q{len(st.session_state.history)-i}:** {h['sql'][:100]}...")
+            st.caption(f"Rows: {h['row_count']}  •  {h['summary'][:120]}...")
+            st.divider()
+
+# ── Sidebar ─────────────────────────────────────────────────────────────
+with st.sidebar:
+    st.header("About")
+    st.markdown("""
+    This agent answers business questions about life insurance
+    customer analytics using a local LLM (Llama 3.1 8B via Ollama).
+
+    **Data**: 57,600 aggregated rows across 10 markets,
+    3 wealth segments, 6 life stages, and 5 product holding flags.
+
+    **Model**: `llama3.1:8b` running locally.
+
+    **How it works**:
+    1. You ask a question in plain English
+    2. The LLM converts it to SQL
+    3. The SQL runs against DuckDB
+    4. Results are summarized and displayed
+    """)
+
+    st.divider()
+
+    st.header("Sample Questions")
+    st.markdown("""
+    - How many customers do we have in total?
+    - Show me customer count by wealth segment
+    - How many HNW customers does each LBU have?
+    - What percentage of customers hold medical insurance in PHKL?
+    - Compare new vs existing premium in PACS
+    - Which market has the highest total premium?
+    - Break down customer count by market and tenure
+    - What is the average premium per customer by tenure in PLUK?
+    """)
