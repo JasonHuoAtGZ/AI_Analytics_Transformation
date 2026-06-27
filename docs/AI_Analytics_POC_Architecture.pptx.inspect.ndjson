@@ -1,0 +1,198 @@
+{"kind":"deck","id":"pr/t5vn5q","name":"Deck"}
+{"kind":"layout","layoutId":"decbcdf3-ff2a-403f-8741-eebac09b5922","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"443cf5e2-06e6-49f7-a56c-90e316eddf6c","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/60l980","slide":1,"title":"AI ANALYTICS TRANSFORMATION — POC","textShapes":4}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":1,"text":"AI ANALYTICS TRANSFORMATION — POC","textPreview":"AI ANALYTICS TRANSFORMATION — POC","textChars":33,"textLines":1,"bbox":[72,180,600,24]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":1,"text":"Customer Analytics Query Agent","textPreview":"Customer Analytics Query Agent","textChars":30,"textLines":1,"bbox":[72,216,800,56]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":1,"text":"Current POC Architecture & Future Microsoft Stack Roadmap","textPreview":"Current POC Architecture & Future Microsoft Stack Roadmap","textChars":57,"textLines":1,"bbox":[72,284,800,36]}
+{"kind":"textbox","id":"sh/0z61032l","slide":1,"text":"Jason Huo · June 2026 · Confidential","textPreview":"Jason Huo · June 2026 · Confidential","textChars":36,"textLines":1,"bbox":[72,380,400,20]}
+{"kind":"notes","id":"nt/60l980","slide":1,"text":""}
+{"kind":"slide","id":"sl/yos0q8","slide":2,"title":"EXECUTIVE SUMMARY","textShapes":10}
+{"kind":"textbox","id":"sh/svu9knih","slide":2,"text":"EXECUTIVE SUMMARY","textPreview":"EXECUTIVE SUMMARY","textChars":17,"textLines":1,"bbox":[72,56,300,18]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":2,"text":"What we built and why","textPreview":"What we built and why","textChars":21,"textLines":1,"bbox":[72,82,600,48]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":2,"text":"A proof-of-concept AI agent that answers natural-language business questions about life insurance customer analytics — converting plain English into SQL, executing against a local analytics database, and returning insights with charts and summaries.","textPreview":"A proof-of-concept AI agent that answers natural-language business questions about life insurance customer analytics — converting plain E...","textChars":249,"textLines":1,"bbox":[72,160,900,80]}
+{"kind":"shape","id":"sh/hoza1gvy","slide":2,"bbox":[72,280,220,90]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":2,"text":"100%","textPreview":"100%","textChars":4,"textLines":1,"bbox":[92,290,180,38]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":2,"text":"Local — zero cloud","textPreview":"Local — zero cloud","textChars":18,"textLines":1,"bbox":[92,332,180,30]}
+{"kind":"shape","id":"sh/a1gvy90j","slide":2,"bbox":[312,280,220,90]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":2,"text":"57,600","textPreview":"57,600","textChars":6,"textLines":1,"bbox":[332,290,180,38]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":2,"text":"Aggregated rows, 10 markets","textPreview":"Aggregated rows, 10 markets","textChars":27,"textLines":1,"bbox":[332,332,180,30]}
+{"kind":"shape","id":"sh/idonyd0z","slide":2,"bbox":[552,280,220,90]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":2,"text":"~15s","textPreview":"~15s","textChars":4,"textLines":1,"bbox":[572,290,180,38]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":2,"text":"End-to-end response","textPreview":"End-to-end response","textChars":19,"textLines":1,"bbox":[572,332,180,30]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":2,"text":"Goal: Enable business stakeholders to get instant answers to customer-related questions without waiting for an analyst.","textPreview":"Goal: Enable business stakeholders to get instant answers to customer-related questions without waiting for an analyst.","textChars":119,"textLines":1,"bbox":[72,420,900,60]}
+{"kind":"notes","id":"nt/yos0q8","slide":2,"text":""}
+{"kind":"slide","id":"sl/oz022v","slide":3,"title":"CURRENT ARCHITECTURE","textShapes":21}
+{"kind":"textbox","id":"sh/rytsvu9k","slide":3,"text":"CURRENT ARCHITECTURE","textPreview":"CURRENT ARCHITECTURE","textChars":20,"textLines":1,"bbox":[72,56,300,18]}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":3,"text":"POC End-to-End Architecture","textPreview":"POC End-to-End Architecture","textChars":27,"textLines":1,"bbox":[72,80,700,48]}
+{"kind":"textbox","id":"sh/90je9cvi","slide":3,"text":"Local-first, zero cloud — Python + Ollama + DuckDB + Streamlit","textPreview":"Local-first, zero cloud — Python + Ollama + DuckDB + Streamlit","textChars":62,"textLines":1,"bbox":[72,132,700,24]}
+{"kind":"shape","id":"sh/y1kre1w7","slide":3,"bbox":[125,200,174,120]}
+{"kind":"textbox","id":"sh/rmhk3q5o","slide":3,"text":"User","textPreview":"User","textChars":4,"textLines":1,"bbox":[125,215,174,24]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":3,"text":"Streamlit UI\nPlain English","textPreview":"Streamlit UI | Plain English","textChars":26,"textLines":2,"bbox":[125,246,174,60]}
+{"kind":"textbox","id":"sh/9s36hcrm","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[303,240,32,28]}
+{"kind":"shape","id":"sh/yxobm58z","slide":3,"bbox":[339,200,174,120]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":3,"text":"Query Engine","textPreview":"Query Engine","textChars":12,"textLines":1,"bbox":[339,215,174,24]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":3,"text":"NL to SQL\nOllama Llama 3.1 8B","textPreview":"NL to SQL | Ollama Llama 3.1 8B","textChars":29,"textLines":2,"bbox":[339,246,174,60]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[517,240,32,28]}
+{"kind":"shape","id":"sh/p8nqxs72","slide":3,"bbox":[553,200,174,120]}
+{"kind":"textbox","id":"sh/0nuxc3yl","slide":3,"text":"SQL Executor","textPreview":"SQL Executor","textChars":12,"textLines":1,"bbox":[553,215,174,24]}
+{"kind":"textbox","id":"sh/7ed8bat4","slide":3,"text":"Validation\nRead-only guard","textPreview":"Validation | Read-only guard","textChars":26,"textLines":2,"bbox":[553,246,174,60]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[731,240,32,28]}
+{"kind":"shape","id":"sh/pkzupwb2","slide":3,"bbox":[767,200,174,120]}
+{"kind":"textbox","id":"sh/0z61032l","slide":3,"text":"DuckDB","textPreview":"DuckDB","textChars":6,"textLines":1,"bbox":[767,215,174,24]}
+{"kind":"textbox","id":"sh/7qpg3ex0","slide":3,"text":"Embedded OLAP\n57,600 rows","textPreview":"Embedded OLAP | 57,600 rows","textChars":25,"textLines":2,"bbox":[767,246,174,60]}
+{"kind":"textbox","id":"sh/i5sneloj","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[945,240,32,28]}
+{"kind":"shape","id":"sh/m94fu18j","slide":3,"bbox":[981,200,174,120]}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":3,"text":"Response","textPreview":"Response","textChars":8,"textLines":1,"bbox":[981,215,174,24]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":3,"text":"Formatted results\nCharts + SQL","textPreview":"Formatted results | Charts + SQL","textChars":30,"textLines":2,"bbox":[981,246,174,60]}
+{"kind":"shape","id":"sh/x0nuxc3y","slide":3,"bbox":[72,380,550,90]}
+{"kind":"textbox","id":"sh/qxs72x4n","slide":3,"text":"Knowledge Base","textPreview":"Knowledge Base","textChars":14,"textLines":1,"bbox":[88,390,500,20]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":3,"text":"Schema, column glossary, synonyms, KPI formulas, 20 few-shot examples","textPreview":"Schema, column glossary, synonyms, KPI formulas, 20 few-shot examples","textChars":69,"textLines":1,"bbox":[88,414,520,44]}
+{"kind":"shape","id":"sh/83itgfml","slide":3,"bbox":[650,380,558,90]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":3,"text":"Tech Stack","textPreview":"Tech Stack","textChars":10,"textLines":1,"bbox":[666,390,500,20]}
+{"kind":"textbox","id":"sh/mtwra5gb","slide":3,"text":"Python 3.12, DuckDB, Ollama (Llama 3.1 8B), Streamlit, pandas, Altair","textPreview":"Python 3.12, DuckDB, Ollama (Llama 3.1 8B), Streamlit, pandas, Altair","textChars":69,"textLines":1,"bbox":[666,414,520,44]}
+{"kind":"notes","id":"nt/oz022v","slide":3,"text":""}
+{"kind":"slide","id":"sl/tp9jy0","slide":4,"title":"POC WORKFLOW","textShapes":20}
+{"kind":"textbox","id":"sh/8bat47y1","slide":4,"text":"POC WORKFLOW","textPreview":"POC WORKFLOW","textChars":12,"textLines":1,"bbox":[72,50,300,18]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":4,"text":"How the agent answers a question","textPreview":"How the agent answers a question","textChars":32,"textLines":1,"bbox":[72,74,700,48]}
+{"kind":"shape","id":"sh/q5o7qpg3","slide":4,"bbox":[72,152,40,40]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":4,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[72,156,40,32]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":4,"text":"User asks a question","textPreview":"User asks a question","textChars":20,"textLines":1,"bbox":[128,148,600,22]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":4,"text":"e.g. Which wealth segment shows the biggest APE proportion in PHKL? typed into Streamlit","textPreview":"e.g. Which wealth segment shows the biggest APE proportion in PHKL? typed into Streamlit","textChars":88,"textLines":1,"bbox":[128,174,900,40]}
+{"kind":"shape","id":"sh/qh0fepkz","slide":4,"bbox":[72,234,40,40]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":4,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[72,238,40,32]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":4,"text":"System prompt is assembled","textPreview":"System prompt is assembled","textChars":26,"textLines":1,"bbox":[128,230,600,22]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":4,"text":"Knowledge Base injects table schema, column glossary, synonym rules, KPI formulas, and 20 few-shot Q&A examples","textPreview":"Knowledge Base injects table schema, column glossary, synonym rules, KPI formulas, and 20 few-shot Q&A examples","textChars":111,"textLines":1,"bbox":[128,256,900,40]}
+{"kind":"shape","id":"sh/re1w7mp0","slide":4,"bbox":[72,316,40,40]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":4,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[72,320,40,32]}
+{"kind":"textbox","id":"sh/9knih4by","slide":4,"text":"Ollama generates SQL","textPreview":"Ollama generates SQL","textChars":20,"textLines":1,"bbox":[128,312,600,22]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":4,"text":"Llama 3.1 8B receives the full prompt, returns DuckDB SQL in a fenced code block at temperature 0.1","textPreview":"Llama 3.1 8B receives the full prompt, returns DuckDB SQL in a fenced code block at temperature 0.1","textChars":99,"textLines":1,"bbox":[128,338,900,40]}
+{"kind":"shape","id":"sh/rqd4vmtw","slide":4,"bbox":[72,398,40,40]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":4,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[72,402,40,32]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":4,"text":"SQL is validated","textPreview":"SQL is validated","textChars":16,"textLines":1,"bbox":[128,394,600,22]}
+{"kind":"textbox","id":"sh/2hwfyxob","slide":4,"text":"SQL Executor checks: SELECT-only, no write operations, correct table, column existence verified","textPreview":"SQL Executor checks: SELECT-only, no write operations, correct table, column existence verified","textChars":95,"textLines":1,"bbox":[128,420,900,40]}
+{"kind":"shape","id":"sh/r2p8nqxs","slide":4,"bbox":[72,480,40,40]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":4,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[72,484,40,32]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":4,"text":"Query executes against DuckDB","textPreview":"Query executes against DuckDB","textChars":29,"textLines":1,"bbox":[128,476,600,22]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":4,"text":"Results returned as pandas DataFrame in milliseconds from 57,600 rows of aggregated customer data","textPreview":"Results returned as pandas DataFrame in milliseconds from 57,600 rows of aggregated customer data","textChars":97,"textLines":1,"bbox":[128,502,900,40]}
+{"kind":"shape","id":"sh/8nqxs72x","slide":4,"bbox":[72,562,40,40]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":4,"text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[72,566,40,32]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":4,"text":"Results are formatted and displayed","textPreview":"Results are formatted and displayed","textChars":35,"textLines":1,"bbox":[128,558,600,22]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":4,"text":"Numbers with thousands commas, percentages at 1 decimal, auto bar/line chart, business-language insights","textPreview":"Numbers with thousands commas, percentages at 1 decimal, auto bar/line chart, business-language insights","textChars":104,"textLines":1,"bbox":[128,584,900,40]}
+{"kind":"notes","id":"nt/tp9jy0","slide":4,"text":""}
+{"kind":"slide","id":"sl/ecnbfo","slide":5,"title":"FUTURE ARCHITECTURE","textShapes":18}
+{"kind":"textbox","id":"sh/nap4r65w","slide":5,"text":"FUTURE ARCHITECTURE","textPreview":"FUTURE ARCHITECTURE","textChars":19,"textLines":1,"bbox":[72,56,300,18]}
+{"kind":"textbox","id":"sh/cvixczed","slide":5,"text":"Target Microsoft Stack Architecture","textPreview":"Target Microsoft Stack Architecture","textChars":35,"textLines":1,"bbox":[72,80,700,48]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":5,"text":"Enterprise-grade, integrated with Microsoft ecosystem","textPreview":"Enterprise-grade, integrated with Microsoft ecosystem","textChars":53,"textLines":1,"bbox":[72,132,600,24]}
+{"kind":"shape","id":"sh/udg7adsj","slide":5,"bbox":[135,200,230,120]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":5,"text":"Power Apps / Teams","textPreview":"Power Apps / Teams","textChars":18,"textLines":1,"bbox":[135,215,230,24]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":5,"text":"Unified UI\nSSO + RBAC","textPreview":"Unified UI | SSO + RBAC","textChars":21,"textLines":2,"bbox":[135,246,230,60]}
+{"kind":"textbox","id":"sh/54zidony","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[369,240,22,28]}
+{"kind":"shape","id":"sh/u9knih4b","slide":5,"bbox":[395,200,230,120]}
+{"kind":"textbox","id":"sh/judg7ads","slide":5,"text":"Azure OpenAI","textPreview":"Azure OpenAI","textChars":12,"textLines":1,"bbox":[395,215,230,24]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":5,"text":"GPT-4o / GPT-5\nEnterprise SLA","textPreview":"GPT-4o / GPT-5 | Enterprise SLA","textChars":29,"textLines":2,"bbox":[395,246,230,60]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[629,240,22,28]}
+{"kind":"shape","id":"sh/54zidony","slide":5,"bbox":[655,200,230,120]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":5,"text":"Azure SQL / Synapse","textPreview":"Azure SQL / Synapse","textChars":19,"textLines":1,"bbox":[655,215,230,24]}
+{"kind":"textbox","id":"sh/nap4r65w","slide":5,"text":"Enterprise DW\nAuto-scale","textPreview":"Enterprise DW | Auto-scale","textChars":24,"textLines":2,"bbox":[655,246,230,60]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[889,240,22,28]}
+{"kind":"shape","id":"sh/5gbq1ory","slide":5,"bbox":[915,200,230,120]}
+{"kind":"textbox","id":"sh/cvixczed","slide":5,"text":"Power BI / Fabric","textPreview":"Power BI / Fabric","textChars":17,"textLines":1,"bbox":[915,215,230,24]}
+{"kind":"textbox","id":"sh/jm1cfa9w","slide":5,"text":"Dashboards\nCopilot + Semantic","textPreview":"Dashboards | Copilot + Semantic","textChars":29,"textLines":2,"bbox":[915,246,230,60]}
+{"kind":"shape","id":"sh/u18jqh0f","slide":5,"bbox":[72,380,550,90]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":5,"text":"Enterprise Governance","textPreview":"Enterprise Governance","textChars":21,"textLines":1,"bbox":[88,390,500,20]}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":5,"text":"Azure AD / Entra ID, Managed Identity, Private Endpoints, Purview, Sentinel","textPreview":"Azure AD / Entra ID, Managed Identity, Private Endpoints, Purview, Sentinel","textChars":75,"textLines":1,"bbox":[88,414,520,44]}
+{"kind":"shape","id":"sh/kb6xkf6d","slide":5,"bbox":[650,380,558,90]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":5,"text":"Integration Points","textPreview":"Integration Points","textChars":18,"textLines":1,"bbox":[666,390,500,20]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":5,"text":"Logic Apps, Azure Functions, Event Hub, SharePoint/OneDrive, Power Automate","textPreview":"Logic Apps, Azure Functions, Event Hub, SharePoint/OneDrive, Power Automate","textChars":75,"textLines":1,"bbox":[666,414,520,44]}
+{"kind":"notes","id":"nt/ecnbfo","slide":5,"text":""}
+{"kind":"slide","id":"sl/5tqe1k","slide":6,"title":"COMPARISON","textShapes":38}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":6,"text":"COMPARISON","textPreview":"COMPARISON","textChars":10,"textLines":1,"bbox":[72,50,300,18]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":6,"text":"POC vs. Microsoft Stack: Pros & Cons","textPreview":"POC vs. Microsoft Stack: Pros & Cons","textChars":36,"textLines":1,"bbox":[72,74,800,48]}
+{"kind":"shape","id":"sh/9w3m94fu","slide":6,"bbox":[72,138,1092,44]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":6,"text":"Dimension","textPreview":"Dimension","textChars":9,"textLines":1,"bbox":[84,150,156,20]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":6,"text":"Current POC (Local)","textPreview":"Current POC (Local)","textChars":19,"textLines":1,"bbox":[264,150,432,20]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":6,"text":"Future (Microsoft Azure)","textPreview":"Future (Microsoft Azure)","textChars":24,"textLines":1,"bbox":[720,150,432,20]}
+{"kind":"shape","id":"sh/9knih4by","slide":6,"bbox":[72,182,1092,44]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":6,"text":"Cost","textPreview":"Cost","textChars":4,"textLines":1,"bbox":[84,194,156,20]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":6,"text":"Free - all local, no cloud costs","textPreview":"Free - all local, no cloud costs","textChars":32,"textLines":1,"bbox":[264,194,432,20]}
+{"kind":"textbox","id":"sh/3m94fu18","slide":6,"text":"Azure OpenAI + SQL + compute - enterprise pricing","textPreview":"Azure OpenAI + SQL + compute - enterprise pricing","textChars":49,"textLines":1,"bbox":[720,194,432,20]}
+{"kind":"shape","id":"sh/a5gbq1or","slide":6,"bbox":[72,226,1092,44]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":6,"text":"Setup","textPreview":"Setup","textChars":5,"textLines":1,"bbox":[84,238,156,20]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":6,"text":"~2 hours on a laptop","textPreview":"~2 hours on a laptop","textChars":20,"textLines":1,"bbox":[264,238,432,20]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":6,"text":"Weeks - provisioning, security, governance","textPreview":"Weeks - provisioning, security, governance","textChars":42,"textLines":1,"bbox":[720,238,432,20]}
+{"kind":"shape","id":"sh/adsji5sn","slide":6,"bbox":[72,270,1092,44]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":6,"text":"LLM Quality","textPreview":"LLM Quality","textChars":11,"textLines":1,"bbox":[84,282,156,20]}
+{"kind":"textbox","id":"sh/sji5snel","slide":6,"text":"Llama 3.1 8B - good for single-table","textPreview":"Llama 3.1 8B - good for single-table","textChars":36,"textLines":1,"bbox":[264,282,432,20]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":6,"text":"GPT-4o/5 - state-of-the-art reasoning","textPreview":"GPT-4o/5 - state-of-the-art reasoning","textChars":37,"textLines":1,"bbox":[720,282,432,20]}
+{"kind":"shape","id":"sh/ap4r65wj","slide":6,"bbox":[72,314,1092,44]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":6,"text":"Data Scale","textPreview":"Data Scale","textChars":10,"textLines":1,"bbox":[84,326,156,20]}
+{"kind":"textbox","id":"sh/rytsvu9k","slide":6,"text":"Up to ~1M rows on laptop","textPreview":"Up to ~1M rows on laptop","textChars":24,"textLines":1,"bbox":[264,326,432,20]}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":6,"text":"Billions of rows - auto-scale, columnstore","textPreview":"Billions of rows - auto-scale, columnstore","textChars":42,"textLines":1,"bbox":[720,326,432,20]}
+{"kind":"shape","id":"sh/90je9cvi","slide":6,"bbox":[72,358,1092,44]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":6,"text":"Security","textPreview":"Security","textChars":8,"textLines":1,"bbox":[84,370,156,20]}
+{"kind":"textbox","id":"sh/rmhk3q5o","slide":6,"text":"Local-only - no network exposure","textPreview":"Local-only - no network exposure","textChars":32,"textLines":1,"bbox":[264,370,432,20]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":6,"text":"Azure AD, RBAC, Private Link, Purview DLP","textPreview":"Azure AD, RBAC, Private Link, Purview DLP","textChars":41,"textLines":1,"bbox":[720,370,432,20]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":6,"bbox":[72,402,1092,44]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":6,"text":"Iteration","textPreview":"Iteration","textChars":9,"textLines":1,"bbox":[84,414,156,20]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":6,"text":"Instant - edit Python, restart","textPreview":"Instant - edit Python, restart","textChars":30,"textLines":1,"bbox":[264,414,432,20]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":6,"text":"Slower - CI/CD, staging environments","textPreview":"Slower - CI/CD, staging environments","textChars":36,"textLines":1,"bbox":[720,414,432,20]}
+{"kind":"shape","id":"sh/ovahoza1","slide":6,"bbox":[72,446,1092,44]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":6,"text":"Collaboration","textPreview":"Collaboration","textChars":13,"textLines":1,"bbox":[84,458,156,20]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":6,"text":"Single-user Streamlit","textPreview":"Single-user Streamlit","textChars":21,"textLines":1,"bbox":[264,458,432,20]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":6,"text":"Multi-user Teams/Power Apps with SSO","textPreview":"Multi-user Teams/Power Apps with SSO","textChars":36,"textLines":1,"bbox":[720,458,432,20]}
+{"kind":"shape","id":"sh/onyd0z61","slide":6,"bbox":[72,490,1092,44]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":6,"text":"Visualization","textPreview":"Visualization","textChars":13,"textLines":1,"bbox":[84,502,156,20]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":6,"text":"Altair (basic bar/line)","textPreview":"Altair (basic bar/line)","textChars":23,"textLines":1,"bbox":[264,502,432,20]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":6,"text":"Power BI - rich interactive dashboards","textPreview":"Power BI - rich interactive dashboards","textChars":38,"textLines":1,"bbox":[720,502,432,20]}
+{"kind":"shape","id":"sh/oj2t83it","slide":6,"bbox":[72,534,1092,44]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":6,"text":"Integration","textPreview":"Integration","textChars":11,"textLines":1,"bbox":[84,546,156,20]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":6,"text":"Standalone POC","textPreview":"Standalone POC","textChars":14,"textLines":1,"bbox":[264,546,432,20]}
+{"kind":"textbox","id":"sh/ulwval87","slide":6,"text":"Full Microsoft 365 ecosystem","textPreview":"Full Microsoft 365 ecosystem","textChars":28,"textLines":1,"bbox":[720,546,432,20]}
+{"kind":"shape","id":"sh/j6tovaho","slide":6,"bbox":[72,578,1092,44]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":6,"text":"Governance","textPreview":"Governance","textChars":10,"textLines":1,"bbox":[84,590,156,20]}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":6,"text":"None - developer-managed","textPreview":"None - developer-managed","textChars":24,"textLines":1,"bbox":[264,590,432,20]}
+{"kind":"textbox","id":"sh/uxc3ylc7","slide":6,"text":"Full audit trail, data lineage, cost mgmt","textPreview":"Full audit trail, data lineage, cost mgmt","textChars":41,"textLines":1,"bbox":[720,590,432,20]}
+{"kind":"shape","id":"sh/ji5snelo","slide":6,"bbox":[72,622,1092,44]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":6,"text":"Maintainability","textPreview":"Maintainability","textChars":15,"textLines":1,"bbox":[84,634,156,20]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":6,"text":"Requires Python/MLOps skills","textPreview":"Requires Python/MLOps skills","textChars":28,"textLines":1,"bbox":[264,634,432,20]}
+{"kind":"textbox","id":"sh/7ed8bat4","slide":6,"text":"Low-code + managed services","textPreview":"Low-code + managed services","textChars":27,"textLines":1,"bbox":[720,634,432,20]}
+{"kind":"notes","id":"nt/5tqe1k","slide":6,"text":""}
+{"kind":"slide","id":"sl/a5atrg","slide":7,"title":"DEEP DIVE","textShapes":14}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":7,"text":"DEEP DIVE","textPreview":"DEEP DIVE","textChars":9,"textLines":1,"bbox":[72,56,300,18]}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":7,"text":"Where each approach wins","textPreview":"Where each approach wins","textChars":24,"textLines":1,"bbox":[72,80,700,48]}
+{"kind":"shape","id":"sh/oza1gvy9","slide":7,"bbox":[72,160,550,340]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":7,"text":"POC wins for...","textPreview":"POC wins for...","textChars":15,"textLines":1,"bbox":[92,180,500,28]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":7,"text":"+  Rapid experimentation - test ideas in hours, not weeks","textPreview":"+  Rapid experimentation - test ideas in hours, not weeks","textChars":57,"textLines":1,"bbox":[92,225,510,40]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":7,"text":"+  Zero budget required - runs on existing laptop","textPreview":"+  Zero budget required - runs on existing laptop","textChars":49,"textLines":1,"bbox":[92,273,510,40]}
+{"kind":"textbox","id":"sh/obm58z25","slide":7,"text":"+  Full control - no procurement, no IT tickets","textPreview":"+  Full control - no procurement, no IT tickets","textChars":47,"textLines":1,"bbox":[92,321,510,40]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":7,"text":"+  Privacy - data never leaves the machine","textPreview":"+  Privacy - data never leaves the machine","textChars":42,"textLines":1,"bbox":[92,369,510,40]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":7,"text":"+  Learning tool - team builds AI intuition","textPreview":"+  Learning tool - team builds AI intuition","textChars":43,"textLines":1,"bbox":[92,417,510,40]}
+{"kind":"shape","id":"sh/8bat47y1","slide":7,"bbox":[658,160,550,340]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":7,"text":"Microsoft wins for...","textPreview":"Microsoft wins for...","textChars":21,"textLines":1,"bbox":[678,180,500,28]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":7,"text":"+  Production scale - billions of rows, thousands of users","textPreview":"+  Production scale - billions of rows, thousands of users","textChars":58,"textLines":1,"bbox":[678,225,510,40]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":7,"text":"+  Enterprise security - Entra ID, RBAC, Private Link","textPreview":"+  Enterprise security - Entra ID, RBAC, Private Link","textChars":53,"textLines":1,"bbox":[678,273,510,40]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":7,"text":"+  Better LLM - GPT-4o/5 outperforms Llama 3.1 8B","textPreview":"+  Better LLM - GPT-4o/5 outperforms Llama 3.1 8B","textChars":49,"textLines":1,"bbox":[678,321,510,40]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":7,"text":"+  Microsoft 365 integration - Teams, Power BI, SharePoint","textPreview":"+  Microsoft 365 integration - Teams, Power BI, SharePoint","textChars":58,"textLines":1,"bbox":[678,369,510,40]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":7,"text":"+  Managed services - auto-patching, 99.9% SLA","textPreview":"+  Managed services - auto-patching, 99.9% SLA","textChars":46,"textLines":1,"bbox":[678,417,510,40]}
+{"kind":"notes","id":"nt/a5atrg","slide":7,"text":""}
+{"kind":"slide","id":"sl/xjo0ls","slide":8,"title":"RECOMMENDATION","textShapes":14}
+{"kind":"textbox","id":"sh/i9s36hcr","slide":8,"text":"RECOMMENDATION","textPreview":"RECOMMENDATION","textChars":14,"textLines":1,"bbox":[72,80,400,18]}
+{"kind":"textbox","id":"sh/p0bi9s36","slide":8,"text":"Two-phase strategy","textPreview":"Two-phase strategy","textChars":18,"textLines":1,"bbox":[72,106,600,48]}
+{"kind":"shape","id":"sh/0fepkzup","slide":8,"bbox":[72,200,480,280]}
+{"kind":"shape","id":"sh/bi9s36hc","slide":8,"bbox":[100,220,48,48]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":8,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[100,226,48,36]}
+{"kind":"textbox","id":"sh/tovahoza","slide":8,"text":"POC - Now","textPreview":"POC - Now","textChars":9,"textLines":1,"bbox":[164,228,300,32]}
+{"kind":"textbox","id":"sh/032lszqt","slide":8,"text":"Continue refining the local agent. Add 3-5 more business question patterns, expand the knowledge base, and demo to 2-3 stakeholder groups for feedback. Build confidence and use cases.","textPreview":"Continue refining the local agent. Add 3-5 more business question patterns, expand the knowledge base, and demo to 2-3 stakeholder groups...","textChars":183,"textLines":1,"bbox":[100,290,420,90]}
+{"kind":"textbox","id":"sh/b6xkf6dc","slide":8,"text":"TIMELINE: 4-6 WEEKS","textPreview":"TIMELINE: 4-6 WEEKS","textChars":19,"textLines":1,"bbox":[100,400,300,16]}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":8,"text":"Python, Ollama, DuckDB, Streamlit","textPreview":"Python, Ollama, DuckDB, Streamlit","textChars":33,"textLines":1,"bbox":[100,420,400,18]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":8,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[570,300,60,52]}
+{"kind":"shape","id":"sh/dg7adsji","slide":8,"bbox":[660,200,548,280]}
+{"kind":"shape","id":"sh/6tovahoz","slide":8,"bbox":[688,220,48,48]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":8,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[688,226,48,36]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":8,"text":"Production - Next","textPreview":"Production - Next","textChars":17,"textLines":1,"bbox":[752,228,400,32]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":8,"text":"Migrate proven patterns to Azure stack. Connect real data sources, deploy as Teams bot + Power BI dashboards, add governance and monitoring. Scale to full organization.","textPreview":"Migrate proven patterns to Azure stack. Connect real data sources, deploy as Teams bot + Power BI dashboards, add governance and monitori...","textChars":168,"textLines":1,"bbox":[688,290,488,90]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":8,"text":"TIMELINE: 3-6 MONTHS","textPreview":"TIMELINE: 3-6 MONTHS","textChars":20,"textLines":1,"bbox":[688,400,300,16]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":8,"text":"Azure OpenAI, SQL, Power BI, Teams","textPreview":"Azure OpenAI, SQL, Power BI, Teams","textChars":34,"textLines":1,"bbox":[688,420,400,18]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":8,"text":"Key principle: Validate locally, scale with enterprise. The POC de-risks the approach - the knowledge base, prompt patterns, and question taxonomy transfer directly to Azure OpenAI with minimal rework.","textPreview":"Key principle: Validate locally, scale with enterprise. The POC de-risks the approach - the knowledge base, prompt patterns, and question...","textChars":201,"textLines":1,"bbox":[72,540,1100,44]}
+{"kind":"notes","id":"nt/xjo0ls","slide":8,"text":""}
