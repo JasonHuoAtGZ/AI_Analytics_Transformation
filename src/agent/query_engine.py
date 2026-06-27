@@ -1,7 +1,7 @@
-﻿"""Query Engine — converts natural language to SQL using Ollama LLM.
+"""Query Engine -- converts natural language to SQL using Ollama LLM.
 
 Sends the knowledge-base-augmented prompt to the local Ollama model
-and extracts the generated SQL from the response.
+and extracts the generated SQL, reasoning, and chart type from the response.
 """
 
 import re
@@ -32,28 +32,37 @@ class QueryEngine:
                 {"role": "system", "content": self._system_prompt},
                 {"role": "user", "content": question},
             ],
-            temperature=0.1,      # Low temperature for deterministic SQL
-            max_tokens=500,
+            temperature=0.1,
+            max_tokens=800,
         )
         raw = response.choices[0].message.content.strip()
         return self._extract_sql(raw)
 
     @staticmethod
     def _extract_sql(raw: str) -> str:
-        """Extract clean SQL from the LLM response.
+        """Extract SQL from the LLM response.
 
-        Handles common LLM output patterns:
-        - SQL wrapped in ```sql ... ``` blocks
-        - SQL wrapped in ``` ... ``` blocks
-        - Plain SQL text
+        Handles:
+        - Fenced `sql ... ` blocks
+        - Fenced ` ... ` blocks
+        - Plain SQL text (fallback)
         """
-        # Try fenced code block first
-        match = re.search(r"```(?:sql)?\s*\n?(.*?)\n?```", raw, re.DOTALL)
-        if match:
-            return match.group(1).strip()
+        # Priority 1: fenced code block
+        m = re.search(
+            r"`(?:sql)?\s*\n(.+?)\n?`",
+            raw, re.DOTALL,
+        )
+        if m:
+            return m.group(1).strip()
 
-        # Fallback: assume the whole response is SQL
+        # Priority 2: look for SELECT statement in the text
+        m = re.search(r"(SELECT\s+.+?(?:;|$))", raw, re.IGNORECASE | re.DOTALL)
+        if m:
+            return m.group(1).strip().rstrip(";")
+
+        # Fallback: return as-is, validation will catch issues
         return raw.strip()
+
 
     @property
     def model_name(self) -> str:

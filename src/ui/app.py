@@ -1,15 +1,17 @@
-﻿"""Streamlit UI for the Customer Analytics Query Agent.
+"""Streamlit UI for the Customer Analytics Query Agent.
 
 Launch with: streamlit run src/ui/app.py
 """
 
 import streamlit as st
+import pandas as pd
 
 from src.agent.query_engine import query_engine
 from src.agent.sql_executor import executor, SQLValidationError
 from src.agent.response_formatter import formatter
 
-# ── Page config ─────────────────────────────────────────────────────────
+
+# -- Page config ------------------------------------------------------------
 st.set_page_config(
     page_title="Customer Analytics Agent",
     page_icon="📊",
@@ -19,11 +21,11 @@ st.set_page_config(
 st.title("📊 Customer Analytics Query Agent")
 st.caption("Ask questions about life insurance customer data in plain English.")
 
-# ── Session state ───────────────────────────────────────────────────────
+# -- Session state ----------------------------------------------------------
 if "history" not in st.session_state:
     st.session_state.history = []
 
-# ── Input ───────────────────────────────────────────────────────────────
+# -- Input ------------------------------------------------------------------
 with st.container():
     col1, col2 = st.columns([5, 1])
     with col1:
@@ -35,9 +37,9 @@ with st.container():
     with col2:
         submit = st.button("Ask", type="primary", use_container_width=True)
 
-# ── Process question ────────────────────────────────────────────────────
+# -- Process question -------------------------------------------------------
 if submit and question.strip():
-    with st.spinner("Generating SQL and querying data..."):
+    with st.spinner("Analyzing your question..."):
         try:
             sql = query_engine.generate_sql(question)
         except Exception as e:
@@ -47,8 +49,8 @@ if submit and question.strip():
         try:
             result = executor.execute(sql)
         except SQLValidationError as e:
-            st.error(f"SQL error: {e}")
-            with st.expander("Generated SQL (failed)", expanded=True):
+            st.error(f"SQL validation failed: {e}")
+            with st.expander("🔍 Generated SQL (failed)", expanded=True):
                 st.code(sql, language="sql")
             st.stop()
 
@@ -57,35 +59,57 @@ if submit and question.strip():
         # Save to history
         st.session_state.history.append(response)
 
-# ── Results ─────────────────────────────────────────────────────────────
+# -- Results ----------------------------------------------------------------
 if st.session_state.history:
     latest = st.session_state.history[-1]
 
     st.divider()
 
-    # Summary
-    st.markdown(f"**{latest['summary']}**")
+    # -- Business summary --
+    if latest.get("summary"):
+        st.markdown(latest["summary"])
 
-    # Data table
+    # -- Chart --
+    chart_type = latest.get("chart_type", "none")
+    chart_data = latest.get("chart_data")
+
+    if chart_type != "none" and chart_data is not None and not chart_data.empty:
+        st.subheader("📈 Visual")
+        if chart_type == "bar":
+            st.bar_chart(chart_data, use_container_width=True)
+        elif chart_type == "line":
+            st.line_chart(chart_data, use_container_width=True)
+
+    # -- Data table --
+    st.subheader("📋 Data")
     st.dataframe(
         latest["table"],
         use_container_width=True,
         hide_index=True,
     )
 
-    # SQL transparency
+    # -- SQL transparency --
     with st.expander("🔍 View generated SQL", expanded=False):
         st.code(latest["sql"], language="sql")
 
-# ── Question history ────────────────────────────────────────────────────
+# -- Question history -------------------------------------------------------
 if len(st.session_state.history) > 1:
-    with st.expander(f"📋 Question history ({len(st.session_state.history)} queries)", expanded=False):
+    with st.expander(
+        f"📋 Question history ({len(st.session_state.history)} queries)",
+        expanded=False,
+    ):
         for i, h in enumerate(reversed(st.session_state.history[:-1]), 1):
-            st.markdown(f"**Q{len(st.session_state.history)-i}:** {h['sql'][:100]}...")
-            st.caption(f"Rows: {h['row_count']}  •  {h['summary'][:120]}...")
+            st.markdown(
+                f"**Q{len(st.session_state.history) - i}:** "
+                f"{h['sql'][:120]}..."
+            )
+            st.caption(
+                f"Rows: {h['row_count']}  •  "
+                f"{h.get('summary', '')[:120]}..."
+            )
             st.divider()
 
-# ── Sidebar ─────────────────────────────────────────────────────────────
+# -- Sidebar ----------------------------------------------------------------
 with st.sidebar:
     st.header("About")
     st.markdown("""
@@ -95,13 +119,13 @@ with st.sidebar:
     **Data**: 57,600 aggregated rows across 10 markets,
     3 wealth segments, 6 life stages, and 5 product holding flags.
 
-    **Model**: `llama3.1:8b` running locally.
+    **Model**: llama3.1:8b running locally.
 
     **How it works**:
     1. You ask a question in plain English
-    2. The LLM converts it to SQL
+    2. The LLM converts it to SQL with analytical reasoning
     3. The SQL runs against DuckDB
-    4. Results are summarized and displayed
+    4. Results are summarized with business insights and charts
     """)
 
     st.divider()
@@ -116,4 +140,8 @@ with st.sidebar:
     - Which market has the highest total premium?
     - Break down customer count by market and tenure
     - What is the average premium per customer by tenure in PLUK?
+    - Which market has the highest HNW customer share?
+    - Compare HNW vs Mass average premium in each market
+    - How is PHKL performing?
+    - Show me the top 5 markets by HNW customer proportion
     """)
